@@ -1,0 +1,87 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #babad3;
+    color: #333;
+    line-height: 1.6;
+    padding: 0 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+
+h1 {
+    font-size: 3rem;
+    background-image: linear-gradient(180deg, #ce1515 0%, #000000 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    text-align: center;
+    font-family: "Bungee", serif;
+    font-weight: 400;
+    font-style: normal;
+    color: transparent;
+}
+main {
+    max-width: 800px;
+    margin: 20px auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+section {
+    margin-bottom: 20px;
+}
+
+h2 {
+
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+}
+
+#upload-section input[type="file"] {
+    display: block;
+    margin: 10px 0;
+}
+
+button {
+    background: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+button:hover {
+    background: #0056b3;
+}
+
+
+.hidden {
+    display: none;
+}
+
+#metrics {
+    background: #f9f9f9;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+#metrics p {
+    margin: 5px 0;
+}
+
+#report-section {
+    text-align: center;
+}
