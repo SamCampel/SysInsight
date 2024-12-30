@@ -11,28 +11,32 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 </head>
 <body>
+    <section id="system-section">
+        <main>
+            <h1>SYSINSIGHT</h1>
+            
+            <section id="upload-section">
+                <h3>Carregar Dados</h3>
+                <input type="file" id="file-input" accept=".xlsx">
+                <button id="process-data">Processar Dados</button>
+            </section>
 
-<section id="system-section">
-    
-    <main>
-        <h1>SYSINSIGHT</h1>
-        <section id="upload-section">
-            <h3>Carregar Dados</h3>
-            <input type="file" id="file-input" accept=".xlsx">
-            <button id="process-data">Processar Dados</button>
-        </section>
+            <section id="metrics-section" class="hidden">
+                <h2>Métricas de Desempenho</h2>
+                <div id="metrics">
+                    <div class="metrics-general"></div>
+                    <div class="metrics-emails">
+                        <h3>Métricas por Gestor</h3>
+                        <div id="emails-container"></div>
+                    </div>
+                </div><br>
+                <button id="send-metrics" class="hidden">Enviar métricas aos gestores</button> 
+            </section>
 
-        <section id="metrics-section" class="hidden">
-            <h2>Métricas de Desempenho</h2>
-            <div id="metrics">
-                >
-            </div>
-        </section>
+            
+        </main>
+    </section>
 
-        <p>Planilha de exemplo: <a href="./PlanilhaExemplo.xlsx" download>download</a></p>
-    </main>
-</section>
-
-<script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

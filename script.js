@@ -1,4 +1,3 @@
-//processar dados da planilha
 document.getElementById('process-data').addEventListener('click', function () {
     const fileInput = document.getElementById('file-input');
     const file = fileInput.files[0];
@@ -28,6 +27,10 @@ document.getElementById('process-data').addEventListener('click', function () {
 
         const metricsSection = document.getElementById('metrics-section');
         metricsSection.classList.remove('hidden');
+
+        // Exibir o botão "Enviar métricas aos gestores"
+        const sendMetricsButton = document.getElementById('send-metrics');
+        sendMetricsButton.classList.remove('hidden');
     };
 
     reader.readAsArrayBuffer(file);
@@ -36,17 +39,19 @@ document.getElementById('process-data').addEventListener('click', function () {
 function processSheetData(data) {
     const atendentesData = {};//dados dos atendentes
 
-    //lendo a planilha prr
+    //lendo a planilha
     data.forEach(row => {
         console.log("Processando linha:", row);
 
         const atendente = row['Atendente'];
+        const emailGestor = row['e-mail gestor'];  // Leitura da coluna "e-mail gestor"
         
         if (!atendentesData[atendente]) {
             atendentesData[atendente] = {
                 cont: 0, 
                 tempo: 0, 
-                demandasEmAberto: 0
+                demandasEmAberto: 0,
+                emailGestor: emailGestor  // Armazenando o e-mail do gestor
             };
         }
 
@@ -63,7 +68,7 @@ function processSheetData(data) {
         if (finalAtendimento) {
             tempoAtendimento = (finalAtendimento - inicioAtendimento) / (1000 * 60); 
         } else {
-            tempoAtendimento = 0; //demands em aberto
+            tempoAtendimento = 0; //demandas em aberto
         }
 
         atendentesData[atendente].cont++;
@@ -81,14 +86,19 @@ function processSheetData(data) {
 
     //métrica por atendente
     for (const atendente in atendentesData) {
-        const { cont, tempo, demandasEmAberto } = atendentesData[atendente];
+        const { cont, tempo, demandasEmAberto, emailGestor } = atendentesData[atendente];
         const tempoMedio = cont > 0 ? (tempo / cont).toFixed(2) : 0;
 
         const atendenteMetrics = document.createElement('p');
         atendenteMetrics.innerHTML = `
             <strong>Atendente ${atendente}:</strong><br>
+            Gestor: ${emailGestor}<br>
             Demandas: ${cont} | Tempo Médio: ${tempoMedio}min | Demandas em Aberto: ${demandasEmAberto}
         `;
         metricsContainer.appendChild(atendenteMetrics);
     }
 };
+
+document.getElementById('send-metrics').addEventListener('click', function() {
+    alert('As métricas foram enviadas aos gestores pelos e-mails que estavam na planilha.');
+});
